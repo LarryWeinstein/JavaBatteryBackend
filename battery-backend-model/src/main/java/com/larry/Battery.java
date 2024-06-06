@@ -18,7 +18,7 @@ import java.util.Objects;
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Battery {
     @Id
-    @SequenceGenerator(name = "SEQ_BATTERY", sequenceName = "seq_battery", allocationSize = 1)
+    @SequenceGenerator(name = "SEQ_BATTERY", sequenceName = "battery_column1_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_BATTERY")
     private Long id;
 
@@ -28,8 +28,19 @@ public class Battery {
     @Column(name = "date_updated")
     private LocalDate lastUpdated;
 
+    //Create many to one in processedData Entity
+    //Then create custom query in backend repository by battery_id
+    //pagination
     @OneToMany(mappedBy = "battery")
     private List<ProcessedData> processedData;
+
+    public Battery(){
+    }
+
+    public Battery(String name){
+        this.name = name;
+        this.lastUpdated = null;
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -32,6 +32,17 @@ public class ProcessedData {
     @Column(name = "discharge_capacity")
     private Double dischargeCapacity;
 
+    public ProcessedData(Battery battery){
+        this.battery = battery;
+    }
+
+    public ProcessedData(Battery battery, Integer cycleNumber, Double chargeCapacity, Double dischargeCapacity){
+        this.battery = battery;
+        this.cycleNumber = cycleNumber;
+        this.chargeCapacity = chargeCapacity;
+        this.dischargeCapacity = dischargeCapacity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
