@@ -19,7 +19,8 @@ CREATE SEQUENCE seq_processed_data
 -- Create the battery table
 CREATE TABLE battery (
     id INT DEFAULT NEXTVAL('seq_battery') PRIMARY KEY,
-    name VARCHAR(30)
+    name VARCHAR(30),
+    last_updated TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Create the processed_data_line table
