@@ -1,5 +1,8 @@
-package com.larryweinstein.battery.backend;
+package com.larryweinstein.battery.backend.service;
 
+import com.larryweinstein.battery.backend.model.Battery;
+import com.larryweinstein.battery.backend.model.ProcessedData;
+import com.larryweinstein.battery.backend.repository.ProcessedDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

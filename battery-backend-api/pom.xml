@@ -5,9 +5,30 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.larryweinstein.battery.backend</groupId>
-        <artifactId>BatteryBackend</artifactId>
+        <artifactId>battery-backend</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>battery-backend-api</artifactId>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.larryweinstein.battery.backend</groupId>
+            <artifactId>battery-backend-service</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

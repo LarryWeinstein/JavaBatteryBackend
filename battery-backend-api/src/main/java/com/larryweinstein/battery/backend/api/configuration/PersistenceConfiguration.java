@@ -1,4 +1,4 @@
-package com.larryweinstein.battery.backend.configuration;
+package com.larryweinstein.battery.backend.api.configuration;
 
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 

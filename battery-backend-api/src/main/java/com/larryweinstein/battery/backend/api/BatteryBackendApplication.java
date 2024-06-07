@@ -1,13 +1,13 @@
-package com.larryweinstein.battery.backend;
+package com.larryweinstein.battery.backend.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BatteryApplication {
+public class BatteryBackendApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BatteryApplication.class, args);
+		SpringApplication.run(BatteryBackendApplication.class, args);
 	}
 
 }

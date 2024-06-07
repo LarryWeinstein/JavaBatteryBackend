@@ -1,8 +1,14 @@
-package com.larryweinstein.battery.backend;
+package com.larryweinstein.battery.backend.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
@@ -17,6 +23,7 @@ import java.util.Objects;
 @Table(name = "battery")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Battery {
+
     @Id
     @SequenceGenerator(name = "SEQ_BATTERY", sequenceName = "battery_column1_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_BATTERY")
@@ -34,10 +41,10 @@ public class Battery {
     @OneToMany(mappedBy = "battery")
     private List<ProcessedData> processedData;
 
-    public Battery(){
+    public Battery() {
     }
 
-    public Battery(String name){
+    public Battery(String name) {
         this.name = name;
         this.lastUpdated = null;
     }

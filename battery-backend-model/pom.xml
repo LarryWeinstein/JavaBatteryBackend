@@ -5,9 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.larryweinstein.battery.backend</groupId>
-        <artifactId>BatteryBackend</artifactId>
+        <artifactId>battery-backend</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>battery-backend-model</artifactId>
-
 </project>

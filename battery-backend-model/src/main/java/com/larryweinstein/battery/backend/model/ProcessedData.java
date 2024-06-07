@@ -1,4 +1,4 @@
-package com.larryweinstein.battery.backend;
+package com.larryweinstein.battery.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
