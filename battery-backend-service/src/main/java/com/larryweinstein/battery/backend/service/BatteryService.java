@@ -29,7 +29,8 @@ public class BatteryService {
 
     //change createBattery to create since everything is regarding battery
     public Battery createBattery(String name) {
-        Battery battery = new Battery(name);
+        Battery battery = new Battery();
+        battery.setName(name);
         return batteryRepository.saveAndFlush(battery);
     }
 
