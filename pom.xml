@@ -22,6 +22,7 @@
         <module>battery-backend-repository</module>
         <module>battery-backend-service</module>
         <module>battery-backend-api</module>
+        <module>battery-backend-flyway</module>
     </modules>
 
     <properties>
