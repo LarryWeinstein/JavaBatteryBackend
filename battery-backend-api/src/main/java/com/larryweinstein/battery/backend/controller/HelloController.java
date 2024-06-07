@@ -1,4 +1,4 @@
-package com.larryweinstein.stockmarket.api.controller;
+package com.larryweinstein.battery.backend.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

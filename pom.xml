@@ -8,7 +8,7 @@
 		<version>3.2.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.larryweinstein.stockmarket</groupId>
+	<groupId>com.larryweinstein.battery.backend</groupId>
 	<artifactId>BatteryBackend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>

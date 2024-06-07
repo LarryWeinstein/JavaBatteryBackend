@@ -1,4 +1,4 @@
-package com.larryweinstein.stockmarket.api;
+package com.larryweinstein.battery.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

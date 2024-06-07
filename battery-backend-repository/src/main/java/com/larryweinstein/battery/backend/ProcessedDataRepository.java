@@ -1,4 +1,4 @@
-package com.larry;
+package com.larryweinstein.battery.backend;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
