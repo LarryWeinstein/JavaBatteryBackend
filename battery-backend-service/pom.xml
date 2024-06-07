@@ -4,19 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.larryweinstein.stockmarket</groupId>
-        <artifactId>BatteryBackend</artifactId>
+        <groupId>com.larryweinstein.battery.backend</groupId>
+        <artifactId>battery-backend</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-
     <artifactId>battery-backend-service</artifactId>
     <dependencies>
         <dependency>
-            <groupId>com.larryweinstein.stockmarket</groupId>
+            <groupId>com.larryweinstein.battery.backend</groupId>
             <artifactId>battery-backend-repository</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
         </dependency>
     </dependencies>
-
 </project>

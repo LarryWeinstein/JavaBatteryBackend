@@ -1,25 +1,33 @@
-package com.larry;
+package com.larryweinstein.battery.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import jakarta.persistence.*;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import java.util.Objects;
 
-@Getter
-@Setter
 @Entity
 @Table(name = "processed_data")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+@Getter
+@Setter
 public class ProcessedData {
+
     @Id
-    @SequenceGenerator(name = "SEQ_DATA", sequenceName = "seq_data", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_DATA")
+    @SequenceGenerator(name = "SEQ_PROCESSED_DATA", sequenceName = "seq_processed_data", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PROCESSED_DATA")
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "battery_id", nullable = false)
     private Battery battery;
 
@@ -31,17 +39,6 @@ public class ProcessedData {
 
     @Column(name = "discharge_capacity")
     private Double dischargeCapacity;
-
-    public ProcessedData(Battery battery){
-        this.battery = battery;
-    }
-
-    public ProcessedData(Battery battery, Integer cycleNumber, Double chargeCapacity, Double dischargeCapacity){
-        this.battery = battery;
-        this.cycleNumber = cycleNumber;
-        this.chargeCapacity = chargeCapacity;
-        this.dischargeCapacity = dischargeCapacity;
-    }
 
     @Override
     public boolean equals(Object o) {

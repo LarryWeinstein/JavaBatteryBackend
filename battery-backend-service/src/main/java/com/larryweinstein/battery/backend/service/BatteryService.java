@@ -1,5 +1,8 @@
-package com.larry;
+package com.larryweinstein.battery.backend.service;
 
+import com.larryweinstein.battery.backend.model.Battery;
+import com.larryweinstein.battery.backend.model.ProcessedData;
+import com.larryweinstein.battery.backend.repository.BatteryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,42 +21,43 @@ public class BatteryService {
 
     //use id to perform search
     //to provide basic info create dto to provide limited info
-    public List<String> getBatteryNames(){
-        List<Battery> batteries =  batteryRepository.findAll();
+    public List<String> getBatteryNames() {
+        List<Battery> batteries = batteryRepository.findAll();
         List<String> names = batteries.stream().map(Battery::getName).collect(Collectors.toList());
         return names;
     }
 
     //change createBattery to create since everything is regarding battery
-    public Battery createBattery(String name){
-        Battery battery = new Battery(name);
+    public Battery createBattery(String name) {
+        Battery battery = new Battery();
+        battery.setName(name);
         return batteryRepository.saveAndFlush(battery);
     }
 
-    public Battery findBatteryById(Long id){
+    public Battery findBatteryById(Long id) {
         return batteryRepository.getById(id);
     }
 
-    public Battery findBatteryByName(String name){
+    public Battery findBatteryByName(String name) {
         return batteryRepository.findFirstByName(name);
     }
 
-    public void deleteBatteryById(Long id){
+    public void deleteBatteryById(Long id) {
         batteryRepository.deleteById(id);
     }
 
-    public void deleteBatteryByName(String name){
+    public void deleteBatteryByName(String name) {
         Battery found = batteryRepository.findFirstByName(name);
         Long id = found.getId();
         batteryRepository.deleteById(id);
     }
 
-    public List<ProcessedData> getBatteryCycleData(Long id){
+    public List<ProcessedData> getBatteryCycleData(Long id) {
         Battery found = batteryRepository.getById(id);
         return found.getProcessedData();
     }
 
-    public Battery updateDateUpdated(Long id, LocalDate dateUpdated){
+    public Battery updateDateUpdated(Long id, LocalDate dateUpdated) {
         Battery found = batteryRepository.getById(id);
         found.setLastUpdated(dateUpdated);
         return batteryRepository.saveAndFlush(found);
