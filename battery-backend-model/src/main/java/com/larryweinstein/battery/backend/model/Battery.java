@@ -33,12 +33,6 @@ public class Battery {
     @Column(name = "date_updated")
     private LocalDate lastUpdated;
 
-    //Create many to one in processedData Entity
-    //Then create custom query in backend repository by battery_id
-    //pagination
-    @OneToMany(mappedBy = "battery")
-    private List<ProcessedData> processedData;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +52,7 @@ public class Battery {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastUpdated=" + lastUpdated +
-                ", processedData=" + processedData +
+                +
                 '}';
     }
 }

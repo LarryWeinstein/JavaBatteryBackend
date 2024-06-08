@@ -52,11 +52,6 @@ public class BatteryService {
         batteryRepository.deleteById(id);
     }
 
-    public List<ProcessedData> getBatteryCycleData(Long id) {
-        Battery found = batteryRepository.getById(id);
-        return found.getProcessedData();
-    }
-
     public Battery updateDateUpdated(Long id, LocalDate dateUpdated) {
         Battery found = batteryRepository.getById(id);
         found.setLastUpdated(dateUpdated);
