@@ -9,14 +9,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/battery")
 public class BatteryController {
+
     private final BatteryService batteryService;
+
     @Autowired
-    public BatteryController(BatteryService batteryService){
+    public BatteryController(BatteryService batteryService) {
         this.batteryService = batteryService;
     }
 
     @GetMapping
-    public String getMapping(){
+    public String getMapping() {
         return "Foo bar baz";
     }
 }
