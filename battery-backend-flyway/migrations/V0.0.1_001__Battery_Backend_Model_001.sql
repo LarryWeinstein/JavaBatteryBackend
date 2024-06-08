@@ -32,4 +32,3 @@ CREATE TABLE processed_data_line (
     charge_capacity DOUBLE PRECISION NOT NULL,
     CONSTRAINT fk_battery FOREIGN KEY (battery_id) REFERENCES battery(id)
 );
-
