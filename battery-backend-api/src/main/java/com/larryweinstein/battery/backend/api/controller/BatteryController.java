@@ -26,6 +26,7 @@ public class BatteryController {
 
     //find one battery by id
 
+
     //find one battery by name
 
     @PostMapping("/")
