@@ -30,8 +30,13 @@ public class Battery {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "date_updated")
+    @Column(name = "last_updated")
     private LocalDate lastUpdated;
+
+    public Battery(){
+        LocalDate now = LocalDate.now();
+        this.lastUpdated = now;
+    }
 
     @Override
     public boolean equals(Object o) {
