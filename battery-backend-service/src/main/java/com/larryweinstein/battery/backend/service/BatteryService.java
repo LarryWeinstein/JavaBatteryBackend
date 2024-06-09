@@ -1,14 +1,12 @@
 package com.larryweinstein.battery.backend.service;
 
 import com.larryweinstein.battery.backend.model.Battery;
-import com.larryweinstein.battery.backend.model.ProcessedData;
 import com.larryweinstein.battery.backend.repository.BatteryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BatteryService {
@@ -18,13 +16,11 @@ public class BatteryService {
     public BatteryService(BatteryRepository batteryRepository) {
         this.batteryRepository = batteryRepository;
     }
-/*
-    //use id to perform search
-    //to provide basic info create dto to provide limited info
-    public List<String> getBatteryNames() {
+
+
+    public List<Battery> getAllBatteries() {
         List<Battery> batteries = batteryRepository.findAll();
-        List<String> names = batteries.stream().map(Battery::getName).collect(Collectors.toList());
-        return names;
+        return batteries;
     }
 
     //change createBattery to create since everything is regarding battery
@@ -38,25 +34,17 @@ public class BatteryService {
         return batteryRepository.getById(id);
     }
 
-    public Battery findBatteryByName(String name) {
-        return batteryRepository.findFirstByName(name);
-    }
 
     public void deleteBatteryById(Long id) {
         batteryRepository.deleteById(id);
     }
 
-    public void deleteBatteryByName(String name) {
-        Battery found = batteryRepository.findFirstByName(name);
-        Long id = found.getId();
-        batteryRepository.deleteById(id);
-    }
 
     public Battery updateDateUpdated(Long id, LocalDate dateUpdated) {
         Battery found = batteryRepository.getById(id);
-        found.setLastUpdated(dateUpdated);
+        LocalDate now = LocalDate.now();
+        found.setLastUpdated(now);
         return batteryRepository.saveAndFlush(found);
     }
-*/
 
 }
