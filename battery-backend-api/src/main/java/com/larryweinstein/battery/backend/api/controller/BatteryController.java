@@ -28,10 +28,9 @@ public class BatteryController {
 
     //find one battery by name
 
-    //create battery by name
-
-    @PostMapping("/{name}")
-    public Battery createBattery(@PathVariable String name){
+    @PostMapping("/")
+    public Battery createBattery(@RequestBody Map<String, String> params) {
+        String name = params.get("name");
         return batteryService.createBattery(name);
     }
 
