@@ -41,10 +41,18 @@ public class BatteryService {
     }
 
 
-    public Battery updateDateUpdated(Long id, LocalDate dateUpdated) {
-        Battery found = batteryRepository.getById(id);
+    public Battery updateDateUpdated(Long id) {
+        Battery found = batteryRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Could not find battery with id" + id));
         LocalDate now = LocalDate.now();
         found.setLastUpdated(now);
+        return batteryRepository.saveAndFlush(found);
+    }
+
+    public Battery changeName(Long id, String name){
+        Battery found = batteryRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Could not find battery with id" + id));
+        found.setName(name);
         return batteryRepository.saveAndFlush(found);
     }
 
