@@ -38,8 +38,16 @@ public class BatteryController {
 
 
     //delete battery
+    @DeleteMapping("/{id}")
+    public void deleteById(@PathVariable Long id){
+        batteryService.deleteBatteryById(id);
+    }
 
     //update battery name
 
     //update battery last updated
+    @PatchMapping("/{id}/update-data")
+    public Battery upDate(@PathVariable Long id){
+        return batteryService.updateDateUpdated(id);
+    }
 }
