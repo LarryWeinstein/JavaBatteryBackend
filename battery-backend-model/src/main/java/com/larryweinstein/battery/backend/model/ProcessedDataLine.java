@@ -20,7 +20,7 @@ import java.util.Objects;
 @Table(name = "processed_data")
 @Getter
 @Setter
-public class ProcessedData {
+public class ProcessedDataLine {
 
     @Id
     @SequenceGenerator(name = "SEQ_PROCESSED_DATA", sequenceName = "seq_processed_data", allocationSize = 1)
@@ -44,7 +44,7 @@ public class ProcessedData {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ProcessedData that = (ProcessedData) o;
+        ProcessedDataLine that = (ProcessedDataLine) o;
         return id != null & Objects.equals(id, that.id);
     }
 

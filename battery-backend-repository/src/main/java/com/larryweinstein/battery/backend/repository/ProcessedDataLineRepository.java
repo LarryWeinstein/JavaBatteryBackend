@@ -1,8 +1,8 @@
 package com.larryweinstein.battery.backend.repository;
 
-import com.larryweinstein.battery.backend.model.ProcessedData;
+import com.larryweinstein.battery.backend.model.ProcessedDataLine;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 //enable configuration entity, repository configurations
-public interface ProcessedDataRepository extends JpaRepository<ProcessedData, Long> {
+public interface ProcessedDataLineRepository extends JpaRepository<ProcessedDataLine, Long> {
 }
