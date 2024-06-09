@@ -6,6 +6,8 @@ import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ProcessedDataLineService {
     private final ProcessedDataLineRepository processedDataLineRepository;
@@ -26,5 +28,10 @@ public class ProcessedDataLineService {
         processedDataLine.setChargeCapacity(chargeCapacity);
         processedDataLine.setDischargeCapacity(dischargeCapacity);
         return processedDataLineRepository.saveAndFlush(processedDataLine);
+    }
+
+    public List<ProcessedDataLine> getAll() {
+        List<ProcessedDataLine> lines = processedDataLineRepository.findAll();
+        return lines;
     }
 }

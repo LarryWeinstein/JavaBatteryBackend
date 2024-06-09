@@ -17,7 +17,7 @@ import lombok.Setter;
 import java.util.Objects;
 
 @Entity
-@Table(name = "processed_data")
+@Table(name = "processed_data_line")
 @Getter
 @Setter
 public class ProcessedDataLine {
