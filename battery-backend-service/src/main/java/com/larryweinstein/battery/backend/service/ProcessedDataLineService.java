@@ -7,12 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProcessedDataService {
-    private final ProcessedDataLineRepository processedDataRepository;
+public class ProcessedDataLineService {
+    private final ProcessedDataLineRepository processedDataLineRepository;
 
     @Autowired
-    public ProcessedDataService(ProcessedDataLineRepository processedDataRepository) {
-        this.processedDataRepository = processedDataRepository;
+    public ProcessedDataLineService(ProcessedDataLineRepository processedDataLineRepository) {
+        this.processedDataLineRepository = processedDataLineRepository;
     }
     //use JPQL to create custom query
     //use Spring Data API to create declarative method to get all data by battery_id
@@ -20,11 +20,11 @@ public class ProcessedDataService {
 
     public ProcessedDataLine createProcessedData(Battery battery, int cycleNumber,
                                                  double chargeCapacity, double dischargeCapacity) {
-        ProcessedDataLine processedData = new ProcessedDataLine();
-        processedData.setBattery(battery);
-        processedData.setCycleNumber(cycleNumber);
-        processedData.setChargeCapacity(chargeCapacity);
-        processedData.setDischargeCapacity(dischargeCapacity);
-        return processedDataRepository.saveAndFlush(processedData);
+        ProcessedDataLine processedDataLine = new ProcessedDataLine();
+        processedDataLine.setBattery(battery);
+        processedDataLine.setCycleNumber(cycleNumber);
+        processedDataLine.setChargeCapacity(chargeCapacity);
+        processedDataLine.setDischargeCapacity(dischargeCapacity);
+        return processedDataLineRepository.saveAndFlush(processedDataLine);
     }
 }
