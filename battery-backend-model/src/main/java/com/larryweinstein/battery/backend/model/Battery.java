@@ -33,6 +33,11 @@ public class Battery {
     @Column(name = "last_updated")
     private LocalDate lastUpdated;
 
+    public Battery(){
+        LocalDate now = LocalDate.now();
+        this.lastUpdated = now;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

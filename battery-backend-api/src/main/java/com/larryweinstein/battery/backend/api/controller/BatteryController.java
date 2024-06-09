@@ -3,11 +3,10 @@ package com.larryweinstein.battery.backend.api.controller;
 import com.larryweinstein.battery.backend.model.Battery;
 import com.larryweinstein.battery.backend.service.BatteryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/battery")
@@ -30,6 +29,12 @@ public class BatteryController {
     //find one battery by name
 
     //create battery by name
+
+    @PostMapping("/{name}")
+    public Battery createBattery(@PathVariable String name){
+        return batteryService.createBattery(name);
+    }
+
 
     //delete battery
 
