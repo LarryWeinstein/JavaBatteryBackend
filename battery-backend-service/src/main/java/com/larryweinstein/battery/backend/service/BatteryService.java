@@ -18,7 +18,7 @@ public class BatteryService {
     public BatteryService(BatteryRepository batteryRepository) {
         this.batteryRepository = batteryRepository;
     }
-
+/*
     //use id to perform search
     //to provide basic info create dto to provide limited info
     public List<String> getBatteryNames() {
@@ -57,6 +57,6 @@ public class BatteryService {
         found.setLastUpdated(dateUpdated);
         return batteryRepository.saveAndFlush(found);
     }
-
+*/
 
 }
