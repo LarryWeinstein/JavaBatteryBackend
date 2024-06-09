@@ -7,6 +7,7 @@ import com.larryweinstein.battery.backend.service.ProcessedDataLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -35,11 +36,15 @@ public class ProcessedDataLineController {
     //get info for processed data line
     //can't figure out why it only works with toString
     @GetMapping("/listall/")
-    public String listall(){
-        return processedDataLineService.getAll().toString();
+    public List<ProcessedDataLine> listall(){
+        return processedDataLineService.getAll();
     }
 
-    //get all processed data lines for a given battery
+
+    @GetMapping("/listbyid/{id}")
+    public List<ProcessedDataLine> listById(@PathVariable Long id){
+        return processedDataLineService.getByBatteryId(id);
+    }
 
     //delete all processed data lines for a given battery
 

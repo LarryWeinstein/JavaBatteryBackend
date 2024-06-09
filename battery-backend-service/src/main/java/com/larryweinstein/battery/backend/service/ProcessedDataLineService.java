@@ -3,6 +3,7 @@ package com.larryweinstein.battery.backend.service;
 import com.larryweinstein.battery.backend.model.Battery;
 import com.larryweinstein.battery.backend.model.ProcessedDataLine;
 import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,4 +35,10 @@ public class ProcessedDataLineService {
         List<ProcessedDataLine> lines = processedDataLineRepository.findAll();
         return lines;
     }
+
+    public List<ProcessedDataLine> getByBatteryId(Long id){
+        List<ProcessedDataLine> lines = processedDataLineRepository.findByBatteryId(id);
+        return lines;
+    }
+
 }
