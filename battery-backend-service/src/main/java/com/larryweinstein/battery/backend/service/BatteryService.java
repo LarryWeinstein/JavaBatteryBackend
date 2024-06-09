@@ -18,25 +18,25 @@ public class BatteryService {
     }
 
 
-    public List<Battery> getAllBatteries() {
+    public List<Battery> getAll() {
         List<Battery> batteries = batteryRepository.findAll();
         return batteries;
     }
 
     //change createBattery to create since everything is regarding battery
-    public Battery createBattery(String name) {
+    public Battery create(String name) {
         Battery battery = new Battery();
         battery.setName(name);
         return batteryRepository.saveAndFlush(battery);
     }
 
-    public Battery findBatteryById(Long id) {
+    public Battery findById(Long id) {
         return batteryRepository.findById(id).orElseThrow(() ->
                 new RuntimeException("Could not find battery with id" + id));
     }
 
 
-    public void deleteBatteryById(Long id) {
+    public void deleteById(Long id) {
         batteryRepository.deleteById(id);
     }
 

@@ -21,24 +21,24 @@ public class BatteryController {
 
     @GetMapping("/listall/")
     public List<Battery> listAll() {
-        return batteryService.getAllBatteries();
+        return batteryService.getAll();
     }
 
     @GetMapping("/{id}")
     public Battery getById(@PathVariable Long id) {
-        return batteryService.findBatteryById(id);
+        return batteryService.findById(id);
     }
 
     @PostMapping("/")
     public Battery createBattery(@RequestBody Map<String, String> params) {
         String name = params.get("name");
-        return batteryService.createBattery(name);
+        return batteryService.create(name);
     }
 
 
     @DeleteMapping("/{id}")
     public void deleteById(@PathVariable Long id) {
-        batteryService.deleteBatteryById(id);
+        batteryService.deleteById(id);
     }
 
     @PutMapping("/{id}")
