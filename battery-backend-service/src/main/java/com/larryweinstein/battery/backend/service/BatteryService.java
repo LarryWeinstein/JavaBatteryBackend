@@ -31,7 +31,8 @@ public class BatteryService {
     }
 
     public Battery findBatteryById(Long id) {
-        return batteryRepository.getById(id);
+        return batteryRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Could not find battery with id" + id));
     }
 
 
