@@ -30,7 +30,7 @@ public class Battery {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "date_updated")
+    @Column(name = "last_updated")
     private LocalDate lastUpdated;
 
     @Override
