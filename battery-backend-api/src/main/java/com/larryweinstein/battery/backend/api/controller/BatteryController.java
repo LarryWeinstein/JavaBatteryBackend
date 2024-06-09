@@ -20,10 +20,20 @@ public class BatteryController {
         this.batteryService = batteryService;
     }
 
-    //Get all batteries
-
     @GetMapping("/listall/")
-    public String test(){
-        return batteryService.getAllBatteries().toString();
+    public List<Battery> listAll(){
+        return batteryService.getAllBatteries();
     }
+
+    //find one battery by id
+
+    //find one battery by name
+
+    //create battery by name
+
+    //delete battery
+
+    //update battery name
+
+    //update battery last updated
 }
