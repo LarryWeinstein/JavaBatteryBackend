@@ -24,7 +24,6 @@ public class BatteryController {
         return batteryService.getAllBatteries();
     }
 
-    //find one battery by id
     @GetMapping("/{id}")
     public Battery getById(@PathVariable Long id) {
         return batteryService.findBatteryById(id);
@@ -37,17 +36,19 @@ public class BatteryController {
     }
 
 
-    //delete battery
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
+    public void deleteById(@PathVariable Long id) {
         batteryService.deleteBatteryById(id);
     }
 
-    //update battery name
+    @PutMapping("/{id}")
+    public Battery updateName(@PathVariable Long id, @RequestBody Map<String, String> updateData) {
+        String name = updateData.get("name");
+        return batteryService.changeName(id, name);
+    }
 
-    //update battery last updated
-    @PatchMapping("/{id}/update-data")
-    public Battery upDate(@PathVariable Long id){
+    @PatchMapping("/{id}/update-date")
+    public Battery upDate(@PathVariable Long id) {
         return batteryService.updateDateUpdated(id);
     }
 }

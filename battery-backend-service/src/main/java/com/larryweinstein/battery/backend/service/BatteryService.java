@@ -49,4 +49,11 @@ public class BatteryService {
         return batteryRepository.saveAndFlush(found);
     }
 
+    public Battery changeName(Long id, String name){
+        Battery found = batteryRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Could not find battery with id" + id));
+        found.setName(name);
+        return batteryRepository.saveAndFlush(found);
+    }
+
 }
