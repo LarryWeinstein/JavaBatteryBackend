@@ -20,13 +20,15 @@ public class BatteryController {
     }
 
     @GetMapping("/listall/")
-    public List<Battery> listAll(){
+    public List<Battery> listAll() {
         return batteryService.getAllBatteries();
     }
 
     //find one battery by id
-
-    //find one battery by name
+    @GetMapping("/{id}")
+    public Battery getById(@PathVariable Long id) {
+        return batteryService.findBatteryById(id);
+    }
 
     @PostMapping("/")
     public Battery createBattery(@RequestBody Map<String, String> params) {
