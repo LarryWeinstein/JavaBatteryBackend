@@ -1,23 +1,13 @@
 package com.larryweinstein.battery.backend.model;
 
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.SequenceGenerator;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Objects;
 
 @Entity
-@Table(name = "processed_data")
+@Table(name = "processed_data_line")
 @Getter
 @Setter
 public class ProcessedDataLine {
@@ -27,7 +17,7 @@ public class ProcessedDataLine {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ_PROCESSED_DATA")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinColumn(name = "battery_id", nullable = false)
     private Battery battery;
 

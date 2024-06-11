@@ -3,8 +3,11 @@ package com.larryweinstein.battery.backend.service;
 import com.larryweinstein.battery.backend.model.Battery;
 import com.larryweinstein.battery.backend.model.ProcessedDataLine;
 import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository;
+import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ProcessedDataLineService {
@@ -27,4 +30,19 @@ public class ProcessedDataLineService {
         processedDataLine.setDischargeCapacity(dischargeCapacity);
         return processedDataLineRepository.saveAndFlush(processedDataLine);
     }
+
+    public List<ProcessedDataLine> getAll() {
+        List<ProcessedDataLine> lines = processedDataLineRepository.findAll();
+        return lines;
+    }
+
+    public List<ProcessedDataLine> getByBatteryId(Long id){
+        List<ProcessedDataLine> lines = processedDataLineRepository.findByBatteryId(id);
+        return lines;
+    }
+
+    public void deleteByBatteryId(Long id){
+        processedDataLineRepository.deleteByBatteryId(id);
+    }
+
 }
