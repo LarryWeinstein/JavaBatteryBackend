@@ -41,4 +41,8 @@ public class ProcessedDataLineService {
         return lines;
     }
 
+    public void deleteByBatteryId(Long id){
+        processedDataLineRepository.deleteByBatteryId(id);
+    }
+
 }

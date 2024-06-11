@@ -22,7 +22,7 @@ public class ProcessedDataLineController {
         this.processedDataLineService = processedDataLineService;
     }
 
-    //create processed data line
+
     @PostMapping("/")
     public ProcessedDataLine create(@RequestBody Map<String, String> params){
         Long batteryId = Long.valueOf(params.get("battery_id"));
@@ -33,8 +33,6 @@ public class ProcessedDataLineController {
         return processedDataLineService.createProcessedData(parentBattery, cycle, chargeCapacity, dischargeCapacity);
     }
 
-    //get info for processed data line
-    //can't figure out why it only works with toString
     @GetMapping("/listall/")
     public List<ProcessedDataLine> listall(){
         return processedDataLineService.getAll();
@@ -46,6 +44,9 @@ public class ProcessedDataLineController {
         return processedDataLineService.getByBatteryId(id);
     }
 
-    //delete all processed data lines for a given battery
+    @DeleteMapping("/{id}")
+    public void deleteByBatteryId(@PathVariable Long id){
+        processedDataLineService.deleteByBatteryId(id);
+    }
 
 }
