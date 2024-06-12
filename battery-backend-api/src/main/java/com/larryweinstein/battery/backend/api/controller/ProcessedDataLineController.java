@@ -6,7 +6,11 @@ import com.larryweinstein.battery.backend.service.BatteryService;
 import com.larryweinstein.battery.backend.service.ProcessedDataLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -17,14 +21,14 @@ public class ProcessedDataLineController {
     private final ProcessedDataLineService processedDataLineService;
 
     @Autowired
-    public ProcessedDataLineController(BatteryService batteryService, ProcessedDataLineService processedDataLineService){
+    public ProcessedDataLineController(BatteryService batteryService, ProcessedDataLineService processedDataLineService) {
         this.batteryService = batteryService;
         this.processedDataLineService = processedDataLineService;
     }
 
 
     @PostMapping("/")
-    public ProcessedDataLine create(@RequestBody Map<String, String> params){
+    public ProcessedDataLine create(@RequestBody Map<String, String> params) {
         Long batteryId = Long.valueOf(params.get("battery_id"));
         Battery parentBattery = batteryService.findById(batteryId);
         int cycle = Integer.valueOf(params.get("cycle_no"));
@@ -34,18 +38,18 @@ public class ProcessedDataLineController {
     }
 
     @GetMapping("/listall/")
-    public List<ProcessedDataLine> listall(){
+    public List<ProcessedDataLine> listall() {
         return processedDataLineService.getAll();
     }
 
 
     @GetMapping("/listbyid/{id}")
-    public List<ProcessedDataLine> listById(@PathVariable Long id){
+    public List<ProcessedDataLine> listById(@PathVariable Long id) {
         return processedDataLineService.getByBatteryId(id);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteByBatteryId(@PathVariable Long id){
+    public void deleteByBatteryId(@PathVariable Long id) {
         processedDataLineService.deleteByBatteryId(id);
     }
 
