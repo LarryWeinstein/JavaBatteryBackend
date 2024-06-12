@@ -4,7 +4,11 @@ import com.larryweinstein.battery.backend.model.Battery;
 import com.larryweinstein.battery.backend.service.BatteryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
 import java.util.Map;
 
@@ -51,4 +55,21 @@ public class BatteryController {
     public Battery upDate(@PathVariable Long id) {
         return batteryService.updateDateUpdated(id);
     }
+
+    @PostMapping("/uploadcsv")
+    public void uploadCSV(@RequestParam("file") MultipartFile file){
+        String fileName = file.getOriginalFilename();
+        System.out.println(fileName);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                // Print each line of the CSV file
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }
