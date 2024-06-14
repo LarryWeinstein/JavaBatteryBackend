@@ -63,7 +63,7 @@ public class BatteryController {
     @PostMapping("/uploadcsv")
     public void uploadCSV(@RequestParam("file") MultipartFile file) {
         String fileName = file.getOriginalFilename();
-        Battery battery = batteryService.create(fileName);
+        //Battery battery = batteryService.create(fileName);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             //get first line
             String line = br.readLine();
