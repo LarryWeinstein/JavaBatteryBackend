@@ -84,18 +84,19 @@ public class BatteryController {
                     //get values to input, cycleNo is last cycle
                     double chargeCapForDataLine = chargeCap - lastChargeCap;
                     double dischargeCapForDataLine = dischargeCap - lastDischargeCap;
-                    ProcessedDataLine pdl = processedDataLineService.createProcessedData(battery, lastCycle,
-                            chargeCapForDataLine, dischargeCapForDataLine);
+                    /*ProcessedDataLine pdl = processedDataLineService.createProcessedData(battery, lastCycle,
+                            chargeCapForDataLine, dischargeCapForDataLine);*/
                     lastCycle = cycleNo;
                     lastDischargeCap = dischargeCap;
                     lastChargeCap = chargeCap;
+                    System.out.println(cycleNo);
                 }
             }
             //process last cycle
             double chargeCapForDataLine = chargeCap - lastChargeCap;
             double dischargeCapForDataLine = dischargeCap - lastDischargeCap;
-            ProcessedDataLine pdl = processedDataLineService.createProcessedData(battery, cycleNo,
-                    chargeCapForDataLine, dischargeCapForDataLine);
+            /*ProcessedDataLine pdl = processedDataLineService.createProcessedData(battery, cycleNo,
+                    chargeCapForDataLine, dischargeCapForDataLine);*/
 
         } catch (IOException e) {
             e.printStackTrace();
