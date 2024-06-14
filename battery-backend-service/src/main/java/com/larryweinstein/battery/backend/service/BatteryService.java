@@ -2,6 +2,7 @@ package com.larryweinstein.battery.backend.service;
 
 import com.larryweinstein.battery.backend.model.Battery;
 import com.larryweinstein.battery.backend.repository.BatteryRepository;
+import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,12 @@ import java.util.List;
 @Service
 public class BatteryService {
     private final BatteryRepository batteryRepository;
+    private final ProcessedDataLineRepository processedDataLineRepository;
 
     @Autowired
-    public BatteryService(BatteryRepository batteryRepository) {
+    public BatteryService(BatteryRepository batteryRepository, ProcessedDataLineRepository processedDataLineRepository) {
         this.batteryRepository = batteryRepository;
+        this.processedDataLineRepository = processedDataLineRepository;
     }
 
 
