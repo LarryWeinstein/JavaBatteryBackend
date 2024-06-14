@@ -27,7 +27,9 @@ public class BatteryController {
         this.processedDataLineService = processedDataLineService;
     }
 
-    @GetMapping("/listall/")
+    //Can send to root mapping
+    //Can have multiple queries with same root if different types
+    @GetMapping("/")
     public List<Battery> listAll() {
         return batteryService.getAll();
     }
@@ -60,7 +62,11 @@ public class BatteryController {
         return batteryService.updateDateUpdated(id);
     }
 
-    @PostMapping("/uploadcsv")
+
+    //use CSV library and move business logic to service
+    //CommonCSV
+    //Get stream from multpart file
+    @PostMapping("/upload_csv")
     public void uploadCSV(@RequestParam("file") MultipartFile file) {
         String fileName = file.getOriginalFilename();
         Battery battery = batteryService.create(fileName);
