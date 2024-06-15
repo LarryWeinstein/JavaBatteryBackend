@@ -7,9 +7,11 @@ import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import tech.tablesaw.api.Table;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.List;
@@ -76,7 +78,6 @@ public class BatteryService {
 
     public void processCSV(MultipartFile file){
         String fileName = file.getOriginalFilename();
-        System.out.println(fileName);
         Battery battery = create(fileName);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             //get first line
@@ -118,7 +119,13 @@ public class BatteryService {
     }
 
     public void processData(MultipartFile file){
-
+        String fileName = file.getOriginalFilename();
+        try(InputStream inputStream = file.getInputStream()) {
+            Table table = Table.read().csv(inputStream, fileName);
+            System.out.println(table);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
