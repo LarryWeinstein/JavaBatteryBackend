@@ -1,6 +1,7 @@
 package com.larryweinstein.battery.backend.service;
 
 import com.larryweinstein.battery.backend.model.Battery;
+import com.larryweinstein.battery.backend.model.ProcessedDataLine;
 import com.larryweinstein.battery.backend.repository.BatteryRepository;
 import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,10 +64,20 @@ public class BatteryService {
         return batteryRepository.saveAndFlush(found);
     }
 
+    public ProcessedDataLine createProcessedData(Battery battery, int cycleNumber,
+                                                 double chargeCapacity, double dischargeCapacity) {
+        ProcessedDataLine processedDataLine = new ProcessedDataLine();
+        processedDataLine.setBattery(battery);
+        processedDataLine.setCycleNumber(cycleNumber);
+        processedDataLine.setChargeCapacity(chargeCapacity);
+        processedDataLine.setDischargeCapacity(dischargeCapacity);
+        return processedDataLineRepository.saveAndFlush(processedDataLine);
+    }
+
     public void processCSV(MultipartFile file){
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
-        //Battery battery = batteryService.create(fileName);
+        Battery battery = create(fileName);
         try (BufferedReader br = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             //get first line
             String line = br.readLine();
@@ -87,8 +98,8 @@ public class BatteryService {
                     //get values to input, cycleNo is last cycle
                     double chargeCapForDataLine = chargeCap - lastChargeCap;
                     double dischargeCapForDataLine = dischargeCap - lastDischargeCap;
-                    /*ProcessedDataLine pdl = processedDataLineService.createProcessedData(battery, lastCycle,
-                            chargeCapForDataLine, dischargeCapForDataLine);*/
+                    ProcessedDataLine pdl = createProcessedData(battery, lastCycle,
+                            chargeCapForDataLine, dischargeCapForDataLine);
                     lastCycle = cycleNo;
                     lastDischargeCap = dischargeCap;
                     lastChargeCap = chargeCap;
@@ -98,8 +109,8 @@ public class BatteryService {
             //process last cycle
             double chargeCapForDataLine = chargeCap - lastChargeCap;
             double dischargeCapForDataLine = dischargeCap - lastDischargeCap;
-            /*ProcessedDataLine pdl = processedDataLineService.createProcessedData(battery, cycleNo,
-                    chargeCapForDataLine, dischargeCapForDataLine);*/
+            ProcessedDataLine pdl = createProcessedData(battery, cycleNo,
+                    chargeCapForDataLine, dischargeCapForDataLine);
 
         } catch (IOException e) {
             e.printStackTrace();
