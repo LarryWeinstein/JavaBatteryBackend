@@ -127,10 +127,10 @@ public class BatteryService {
             Table table = Table.read().csv(inputStream, fileName);
             Table chargeCapacities = table.summarize("Charge_Capacity(Ah)", AggregateFunctions.range)
                     .by("Cycle_Index");
-            System.out.println(chargeCapacities);
             Table dischargeCapacities = table.summarize("Discharge_Capacity(Ah)", AggregateFunctions.range)
                     .by("Cycle_Index");
-            System.out.println(dischargeCapacities);
+            Table joinedTable = chargeCapacities.joinOn("Cycle_Index").leftOuter(dischargeCapacities);
+            System.out.println(joinedTable);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
