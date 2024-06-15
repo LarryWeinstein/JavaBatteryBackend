@@ -65,4 +65,8 @@ public class BatteryController {
         batteryService.processCSV(file);
     }
 
+    //To get Tablesaw working
+    @PostMapping("/uploaddata")
+    public void uploadData(@RequestParam("file") MultipartFile file){batteryService.processData(file);}
+
 }

@@ -117,4 +117,8 @@ public class BatteryService {
         }
     }
 
+    public void processData(MultipartFile file){
+
+    }
+
 }
