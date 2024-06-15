@@ -124,6 +124,7 @@ public class BatteryService {
 
     public void processData(MultipartFile file){
         String fileName = file.getOriginalFilename();
+        Battery battery = create(fileName);
         try(InputStream inputStream = file.getInputStream()) {
             Table table = Table.read().csv(inputStream, fileName);
             Table chargeCapacities = table.summarize("Charge_Capacity(Ah)", AggregateFunctions.range)
@@ -135,7 +136,7 @@ public class BatteryService {
                 Integer cycleNumber = row.getInt("Cycle_Index");
                 Double chargeCapacity = row.getDouble("Range [Charge_Capacity(Ah)]");
                 Double dischargeCapacity = row.getDouble("Range [Discharge_Capacity(Ah)]");
-                System.out.println(dischargeCapacity);
+                ProcessedDataLine pdl = createProcessedData(battery, cycleNumber, chargeCapacity, dischargeCapacity);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
