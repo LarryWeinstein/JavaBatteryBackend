@@ -20,7 +20,7 @@ public class ProcessedDataLineService {
     //use JPQL to create custom query
     //use Spring Data API to create declarative method to get all data by battery_id
     //find all by battery id
-
+/*
     public ProcessedDataLine createProcessedData(Battery battery, int cycleNumber,
                                                  double chargeCapacity, double dischargeCapacity) {
         ProcessedDataLine processedDataLine = new ProcessedDataLine();
@@ -29,7 +29,7 @@ public class ProcessedDataLineService {
         processedDataLine.setChargeCapacity(chargeCapacity);
         processedDataLine.setDischargeCapacity(dischargeCapacity);
         return processedDataLineRepository.saveAndFlush(processedDataLine);
-    }
+    }*/
 
     public List<ProcessedDataLine> getAll() {
         List<ProcessedDataLine> lines = processedDataLineRepository.findAll();

@@ -34,7 +34,7 @@ public class ProcessedDataLineController {
         int cycle = Integer.valueOf(params.get("cycle_no"));
         Double chargeCapacity = Double.valueOf(params.get("charge_capacity"));
         Double dischargeCapacity = Double.valueOf(params.get("discharge_capacity"));
-        return processedDataLineService.createProcessedData(parentBattery, cycle, chargeCapacity, dischargeCapacity);
+        return batteryService.createProcessedData(parentBattery, cycle, chargeCapacity, dischargeCapacity);
     }
 
     @GetMapping("/listall/")
