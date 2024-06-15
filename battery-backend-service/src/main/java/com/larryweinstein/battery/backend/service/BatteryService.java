@@ -125,12 +125,10 @@ public class BatteryService {
         String fileName = file.getOriginalFilename();
         try(InputStream inputStream = file.getInputStream()) {
             Table table = Table.read().csv(inputStream, fileName);
-            Table chargeCapacities = table.summarize("Charge_Capacity(Ah)", AggregateFunctions.max,
-                            AggregateFunctions.min)
+            Table chargeCapacities = table.summarize("Charge_Capacity(Ah)", AggregateFunctions.range)
                     .by("Cycle_Index");
             System.out.println(chargeCapacities);
-            Table dischargeCapacities = table.summarize("Discharge_Capacity(Ah)", AggregateFunctions.max,
-                    AggregateFunctions.min)
+            Table dischargeCapacities = table.summarize("Discharge_Capacity(Ah)", AggregateFunctions.range)
                     .by("Cycle_Index");
             System.out.println(dischargeCapacities);
         } catch (IOException e) {
