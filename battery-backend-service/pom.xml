@@ -14,5 +14,10 @@
             <groupId>com.larryweinstein.battery.backend</groupId>
             <artifactId>battery-backend-repository</artifactId>
         </dependency>
+        <dependency>
+            <groupId>tech.tablesaw</groupId>
+            <artifactId>tablesaw-core</artifactId>
+            <version>0.43.1</version>
+        </dependency>
     </dependencies>
 </project>
