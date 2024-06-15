@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tech.tablesaw.aggregate.AggregateFunction;
 import tech.tablesaw.aggregate.AggregateFunctions;
+import tech.tablesaw.api.Row;
 import tech.tablesaw.api.Table;
 
 import java.io.BufferedReader;
@@ -130,7 +131,12 @@ public class BatteryService {
             Table dischargeCapacities = table.summarize("Discharge_Capacity(Ah)", AggregateFunctions.range)
                     .by("Cycle_Index");
             Table joinedTable = chargeCapacities.joinOn("Cycle_Index").leftOuter(dischargeCapacities);
-            System.out.println(joinedTable);
+            for(Row row : joinedTable){
+                Integer cycleNumber = row.getInt("Cycle_Index");
+                Double chargeCapacity = row.getDouble("Range [Charge_Capacity(Ah)]");
+                Double dischargeCapacity = row.getDouble("Range [Discharge_Capacity(Ah)]");
+                System.out.println(dischargeCapacity);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
