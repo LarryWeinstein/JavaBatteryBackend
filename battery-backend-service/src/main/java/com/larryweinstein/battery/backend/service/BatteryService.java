@@ -4,9 +4,12 @@ import com.larryweinstein.battery.backend.model.Battery;
 import com.larryweinstein.battery.backend.model.ProcessedDataLine;
 import com.larryweinstein.battery.backend.repository.BatteryRepository;
 import com.larryweinstein.battery.backend.repository.ProcessedDataLineRepository;
+import org.springframework.aop.scope.ScopedProxyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import tech.tablesaw.aggregate.AggregateFunction;
+import tech.tablesaw.aggregate.AggregateFunctions;
 import tech.tablesaw.api.Table;
 
 import java.io.BufferedReader;
@@ -122,7 +125,14 @@ public class BatteryService {
         String fileName = file.getOriginalFilename();
         try(InputStream inputStream = file.getInputStream()) {
             Table table = Table.read().csv(inputStream, fileName);
-            System.out.println(table);
+            Table chargeCapacities = table.summarize("Charge_Capacity(Ah)", AggregateFunctions.max,
+                            AggregateFunctions.min)
+                    .by("Cycle_Index");
+            System.out.println(chargeCapacities);
+            Table dischargeCapacities = table.summarize("Discharge_Capacity(Ah)", AggregateFunctions.max,
+                    AggregateFunctions.min)
+                    .by("Cycle_Index");
+            System.out.println(dischargeCapacities);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
