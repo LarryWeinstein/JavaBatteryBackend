@@ -10,11 +10,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @SpringBootApplication(scanBasePackages = {"com.larryweinstein.battery.backend"})
 public class BatteryBackendApplication {
-    @Bean
-    UserDetailsService userDetailsService(){
-        return new InMemoryUserDetailsManager(User.withDefaultPasswordEncoder()
-                .username("trogdor").password("burninator").roles("USER").build());
-    }
     public static void main(String[] args) {
         SpringApplication.run(BatteryBackendApplication.class, args);
     }
