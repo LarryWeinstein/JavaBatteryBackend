@@ -32,7 +32,11 @@ public class AuthenticationService {
         var email = input.getEmail();
         var password = input.getPassword();
         var encodedPassword = passwordEncoder.encode(password);
-        User user = new User(userName, email, encodedPassword);
+        //User user = new User(userName, email, encodedPassword);
+        User user = new User();
+        user.setUsername(userName);
+        user.setEmail(email);
+        user.setPassword(encodedPassword);
         return userRepository.save(user);
     }
 
