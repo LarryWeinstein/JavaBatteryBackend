@@ -20,7 +20,7 @@ CREATE TABLE "user" (
     id INT DEFAULT NEXTVAL('seq_user') PRIMARY KEY,
     username VARCHAR(20) NOT NULL,
     email VARCHAR(50) NOT NULL,    
-    password VARCHAR(30) NOT NULL   
+    password VARCHAR(128) NOT NULL   
 );
 
 -- Create the user table

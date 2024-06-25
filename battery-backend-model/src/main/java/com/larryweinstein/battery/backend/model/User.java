@@ -11,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.*;
 
 @Entity
-@Table(name = "user", uniqueConstraints = {@UniqueConstraint(columnNames = "username"),
+@Table(name = "\"user\"", uniqueConstraints = {@UniqueConstraint(columnNames = "username"),
         @UniqueConstraint(columnNames = "email")})
 @Getter
 @Setter
@@ -32,7 +32,7 @@ public class User implements UserDetails {
     private String email;
 
     @NotBlank
-    @Column(name = "password", length = 30)
+    @Column(name = "password", length = 128)
     private String password;
 
     public User() {
