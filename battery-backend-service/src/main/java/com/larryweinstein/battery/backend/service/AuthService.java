@@ -10,14 +10,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthenticationService {
+public class AuthService {
+
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
-
     private final AuthenticationManager authenticationManager;
 
-    public AuthenticationService(
+    public AuthService(
             UserRepository userRepository,
             AuthenticationManager authenticationManager,
             PasswordEncoder passwordEncoder
@@ -27,7 +26,7 @@ public class AuthenticationService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User signup(RegisterUserDto input) {
+    public User register(RegisterUserDto input) {
         var userName = input.getUsername();
         var email = input.getEmail();
         var password = input.getPassword();
@@ -40,7 +39,7 @@ public class AuthenticationService {
         return userRepository.save(user);
     }
 
-    public User authenticate(LoginUserDto input) {
+    public User login(LoginUserDto input) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         input.getUsername(),
@@ -48,7 +47,7 @@ public class AuthenticationService {
                 )
         );
 
-        return userRepository.findByusername(input.getUsername())
+        return userRepository.findByUsername(input.getUsername())
                 .orElseThrow();
     }
 }
